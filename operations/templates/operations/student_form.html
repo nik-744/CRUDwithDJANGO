@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% load static %}
+
+    <title>Student Form</title>
+    <link rel="stylesheet" href="{% static 'operations/add.css' %}">
+</head>
+
+<body>
+    <h1>{{ form.instance.pk|yesno:"Update Student,Add Student" }}</h1>
+    <form method="POST">
+    {% csrf_token %}
+
+    <div>
+        {{ form.firstName.label_tag }}
+        {{ form.firstName }}
+        {% if form.firstName.errors %}
+            <div class="error">{{ form.firstName.errors.0 }}</div>
+        {% endif %}
+    </div>
+
+    <div>
+        {{ form.lastName.label_tag }}
+        {{ form.lastName }}
+        {% if form.lastName.errors %}
+            <div class="error">{{ form.lastName.errors.0 }}</div>
+        {% endif %}
+    </div>
+
+    <div>
+        {{ form.email.label_tag }}
+        {{ form.email }}
+        {% if form.email.errors %}
+            <div class="error">{{ form.email.errors.0 }}</div>
+        {% endif %}
+    </div>
+
+    <div>
+        {{ form.age.label_tag }}
+        {{ form.age }}
+        {% if form.age.errors %}
+            <div class="error">{{ form.age.errors.0 }}</div>
+        {% endif %}
+    </div>
+
+    <div>
+        {{ form.department.label_tag }}
+        {{ form.department }}
+        {% if form.department.errors %}
+            <div class="error">{{ form.department.errors.0 }}</div>
+        {% endif %}
+    </div>
+
+    <button type="submit">Save</button>
+</form>
+
+
+    <a href="{% url 'home' %}">Back to List</a>
+</body>
+
+</html>

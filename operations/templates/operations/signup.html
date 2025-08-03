@@ -1,0 +1,18 @@
+{% extends "operations/base.html" %}
+
+{% block title %}Sign Up{% endblock title %}
+
+{% block content %}
+<form action="{% url 'signup' %}" method="post">
+    <h2 style="text-align: center;">Sign Up</h2>
+    {% csrf_token %}
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required>
+    <br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+    <br>
+    <button type="submit">Sign Up</button>
+    <p>Already have an account? <a href="{% url 'loginuser' %}">Login</a></p>
+</form>
+{% endblock content %}
