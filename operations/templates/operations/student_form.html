@@ -46,6 +46,14 @@
     </div>
 
     <div>
+        {{ form.gender.label_tag }}
+        {{ form.gender }}
+        {% if form.gender.errors %}
+            <div class="error">{{ form.gender.errors.0 }}</div>
+        {% endif %}
+    </div>
+
+    <div>
         {{ form.department.label_tag }}
         {{ form.department }}
         {% if form.department.errors %}
@@ -55,7 +63,6 @@
 
     <button type="submit">Save</button>
 </form>
-
 
     <a href="{% url 'home' %}">Back to List</a>
 </body>

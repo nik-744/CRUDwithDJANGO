@@ -1,0 +1,15 @@
+
+<head>
+    {% load static %}
+
+    <title>Student Form</title>
+    <link rel="stylesheet" href="{% static 'operations/add.css' %}">
+</head>
+
+<h2>Add Department</h2>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Add</button>
+</form>
+<a href="{% url 'home' %}">Back to List</a>

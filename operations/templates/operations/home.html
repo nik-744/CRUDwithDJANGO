@@ -27,6 +27,10 @@
     </div> -->
     <div class="bar">
         <div class="button-group">
+            <form method="POST" action="{% url 'departmentadd' %}">
+                {% csrf_token %}
+                <button type="submit">Add Department</button>
+            </form>
             <form method="POST" action="{% url 'student_create' %}">
                 {% csrf_token %}
                 <button type="submit">ADD Student</button>
@@ -52,28 +56,51 @@
         </ul>
         {% endif %}
     </div>
+
+    <!-- {% if department %}
+    <h1>Department List</h1>
+    <table border="1">
+        <tr>
+        <th>Sr.no</th>
+        <th>Department Name</th>
+        </tr>
+        {% for depart in department %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td> {{ depart.name  }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <h1>Add Department</h1>
+    {% endif %} -->
+
     {% if students %}
     <h1>Students List</h1>
     <table border="1">
         <tr>
+            <th>Sr.No</th>
             <th>First Name</th>
             <th>Last Name</th>
             <th>Email</th>
             <th>Age</th>
+            <th>Gender</th>
             <th>Department</th>
             <th>Actions</th>
         </tr>
         {% for student in students %}
         <tr>
+            <td>{{ forloop.counter }}</td>
             <td>{{ student.firstName }} </td>
             <td>{{ student.lastName }}</td>
             <td>{{ student.email }}</td>
             <td>{{ student.age }}</td>
+            <td>{{ student.gender }}</td>
             <td>{{ student.department }}</td>
             <td>
                 <form action="{% url 'student_update' student.pk %}" method="GET" style="display:inline;">
                     {% csrf_token %}
-                    <button type="submit">Edit</button>
+                    <button type="submit">Update</button>
                 </form>
                 <!-- <a href="{% url 'student_update' student.pk %}"><button type="submit">Edit</a> -->
                 <form action="{% url 'student_delete' student.pk %}" method="POST" style="display:inline;"
@@ -86,7 +113,9 @@
         {% endfor %}
     </table>
     {% else %}
-    <strong><p style="text-align: center;">No Student(s) found.</p></strong>
+    <strong>
+        <p style="text-align: center;">No Student(s) found.</p>
+    </strong>
     {% endif %}
 
 </body>
